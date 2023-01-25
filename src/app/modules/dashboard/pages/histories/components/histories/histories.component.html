@@ -1,0 +1,94 @@
+<div class="content">
+  <p-card class="card">
+    <ng-template pTemplate="right">
+      <button
+        pButton
+        pRipple
+        label="Exportar"
+        icon="pi pi-upload"
+        class="p-button-help"
+      ></button>
+    </ng-template>
+    <p-table
+      #dt
+      [value]="histories"
+      [rows]="10"
+      [paginator]="true"
+      [rowHover]="true"
+      [responsive]="true"
+      currentPageReportTemplate="Mostrando de {first} a la {last} de {totalRecords} entradas"
+      [showCurrentPageReport]="true"
+      styleClass="p-datatable-sm p-datatable-responsive-demo"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          <h2 class="text-2xl">Historial</h2>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>SERIAL</th>
+          <th>AREA</th>
+          <th>COORDENADAS LATITUD</th>
+          <th>COORDENADAS LONGITUD</th>
+          <th>ULTIMA TEMP</th>
+          <th>comentario</th>
+          <th>GESTIONAR</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-historie>
+        <tr>
+          <td>
+            <span class="p-column-title">serial</span>
+            {{ historie.serial }}
+          </td>
+          <td>
+            <span class="p-column-title">Area</span>
+            {{ historie.area }}
+          </td>
+          <td>
+            <span class="p-column-title">Coordenadas_latitud</span>
+            {{ historie.coordenadas_latitud }}
+          </td>
+          <td>
+            <span class="p-column-title">Coordenadas_longitud</span>
+            {{ historie.coordenadas_longitud }}
+          </td>
+          <td>
+            <span class="p-column-title">Temperatura</span>
+            {{ historie.temperatura }}º
+          </td>
+          <td>
+            <span class="p-column-title">Comentario</span>
+            {{ historie.comentario }}
+          </td>
+          <td>
+            <span class="p-column-title">Gestionar</span>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              pTooltip="Editar"
+              (click)="showFormDialog(historie)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              pTooltip="Borrar"
+              (click)="showConfirmDialog(historie)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <!-- <app-form-create-sensors
+      [sensor]="sensor"
+      [(isOpen)]="isOpen"
+      (save)="saveOrEdit($event)"
+    ></app-form-create-sensors> -->
+</div>

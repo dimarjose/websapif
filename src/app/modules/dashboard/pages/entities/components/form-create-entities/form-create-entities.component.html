@@ -1,0 +1,70 @@
+<p-dialog
+  [(visible)]="isOpen"
+  [style]="{ width: '450px' }"
+  header="Información de entidades"
+  [modal]="true"
+  [closable]="false"
+>
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" class="formgrid p-fluid grip">
+      <div class="fiel col-12">
+        <label for="nombre">
+          Nombre
+          <span class="text-red">*</span>
+        </label>
+        <input type="text" pInputText id="nombre" formControlName="nombre" />
+      </div>
+      <div class="field col-12">
+        <label for="direccion">
+          Direccion
+          <span class="text-red"></span>
+        </label>
+        <input
+          type="text"
+          id="direccion"
+          pInputText
+          mode="currency"
+          formControlName="direccion"
+        />
+      </div>
+      <div class="field col-12">
+        <label for="telefono">
+          Telefono
+          <span class="text-red"></span>
+        </label>
+        <p-inputNumber id="telefono" formControlName="telefono"></p-inputNumber>
+      </div>
+      <div class="field col-12">
+        <label for="email">
+          Email
+          <span class="text-red"></span>
+        </label>
+        <input
+          type="text"
+          id="email"
+          pInputText
+          mode="currency"
+          formControlName="email"
+        />
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="validateForm()"
+    ></button>
+  </ng-template>
+</p-dialog>

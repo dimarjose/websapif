@@ -1,0 +1,76 @@
+<div class="w-full flex justify-content-center align-items-center h-screen">
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png"
+        alt="Image"
+        height="50"
+        class="mb-3"
+      />
+      <div class="text-900 text-3xl font-medium mb-3">Bienvenido de nuevo</div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="sendForm()">
+      <label for="email1" class="block text-900 font-medium mb-2">Correo</label
+      ><br />
+      <input
+        id="email1"
+        type="text"
+        pInputText
+        class="w-full mb-3"
+        formControlName="email"
+      />
+      <small
+        *ngIf="invalidField('email')"
+        class="block color-red font-bold mb-2"
+        >Campo requerido</small
+      >
+      <small *ngIf="invalidEmail" class="block mb-2 color-red font-bold"
+        >Email inválido</small
+      >
+      <br />
+      <label for="password1" class="block text-900 font-medium mb-2"
+        >Contraseña</label
+      ><br />
+      <input
+        id="password1"
+        type="password"
+        pInputText
+        class="w-full mb-3"
+        formControlName="password"
+      />
+      <small
+        *ngIf="invalidField('password')"
+        class="block color-red font-bold mb-2"
+        >Campo requerido</small
+      >
+      <small *ngIf="invalidMinLength" class="block mb-2 color-red font-bold"
+        >Como mínimo 6 caracteres</small
+      >
+
+      <div class="flex align-items-center justify-content-between mb-6">
+        <div class="flex align-items-center">
+          <p-checkbox
+            id="rememberme1"
+            [binary]="true"
+            styleClass="mr-2"
+          ></p-checkbox>
+          <label for="rememberme1" class="text-900">Recordarme</label>
+        </div>
+        <a
+          class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
+          >¿Olvidaste tu contraseña?</a
+        >
+      </div>
+
+      <button
+        pButton
+        pRipple
+        label="Ingresar"
+        icon="pi pi-user"
+        class="w-full"
+        type="submit"
+      ></button>
+    </form>
+  </div>
+</div>

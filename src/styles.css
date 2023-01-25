@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  background-color: rgb(233, 232, 232);
+}
+
+@import "~normalize.css";
+@import "assets/styles/index.css";

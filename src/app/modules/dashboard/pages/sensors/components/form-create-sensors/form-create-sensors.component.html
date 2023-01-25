@@ -1,0 +1,83 @@
+<p-dialog
+  [(visible)]="isOpen"
+  [style]="{ width: '450px' }"
+  header="Información de Sensor"
+  [modal]="true"
+  [closable]="false"
+>
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" class="formgrid p-fluid grid">
+      <div class="field col-12">
+        <label for="serial">
+          Serial
+          <span class="text-red">*</span>
+        </label>
+        <input type="text" pInputText id="serial" formControlName="serial" />
+      </div>
+
+      <div class="field col-12">
+        <label for="area">
+          Area
+          <span class="text-red">*</span>
+        </label>
+        <input id="area" pInputText mode="currency" formControlName="area" />
+      </div>
+
+      <div class="field col-12">
+        <label for="coordenadas_latitud">
+          Coordenadas_latitud
+          <span class="text-red">*</span>
+        </label>
+        <input
+          type="text"
+          pInputText
+          id="coordenadas_latitud"
+          formControlName="coordenadas_latitud"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="coordenadas_longitud ">
+          Coordenadas_longitud
+          <span class="text-red">*</span>
+        </label>
+        <input
+          type="text"
+          pInputText
+          id="coordenadas_longitud"
+          formControlName="coordenadas_longitud"
+        />
+      </div>
+
+      <!-- <div class="field col-12">
+        <label for="temperatura">
+          Temperatura
+          <span class="text-red">*</span>
+        </label>
+        <p-inputNumber
+          id="temperatura"
+          formControlName="temperatura"
+        ></p-inputNumber>
+      </div> -->
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="validateForm()"
+    ></button>
+  </ng-template>
+</p-dialog>

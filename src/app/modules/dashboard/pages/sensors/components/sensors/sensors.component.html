@@ -1,0 +1,130 @@
+<div class="content">
+  <p-card class="card">
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Nuevo"
+      class="p-button-success"
+      (click)="showFormDialog()"
+    ></button>
+    <p-table
+      #dt
+      [value]="sensors"
+      [rows]="10"
+      [paginator]="true"
+      [rowHover]="true"
+      [responsive]="true"
+      currentPageReportTemplate="Mostrando de {first} a la {last} de {totalRecords} entradas"
+      [showCurrentPageReport]="true"
+      styleClass="p-datatable-sm p-datatable-responsive-demo"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          <h2 class="text-2xl">Gestión de Sensores</h2>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>SERIAL</th>
+          <th>AREA</th>
+          <th>COORDENADAS LATITUD</th>
+          <th>COORDENADAS LONGITUD</th>
+          <th>ULTIMA TEMP</th>
+          <th>VER EN MAPA</th>
+          <th>GESTIONAR</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-sensor>
+        <tr>
+          <td>
+            <span class="p-column-title">serial</span>
+            {{ sensor.serial }}
+          </td>
+          <td>
+            <span class="p-column-title">Area</span>
+            {{ sensor.area }}
+          </td>
+          <td>
+            <span class="p-column-title">Coordenadas_latitud</span>
+            {{ sensor.coordenadas_latitud }}
+          </td>
+          <td>
+            <span class="p-column-title">Coordenadas_longitud</span>
+            {{ sensor.coordenadas_longitud }}
+          </td>
+          <td>
+            <span class="p-column-title">Temperatura</span>
+            {{ sensor.temperatura }}º
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-search"
+              class="p-button-rounded p-button-success"
+              routerLink="map"
+            ></button>
+          </td>
+          <td>
+            <span class="p-column-title">Gestionar</span>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              pTooltip="Editar"
+              (click)="showFormDialog(sensor)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              pTooltip="Borrar"
+              (click)="showConfirmDialog(sensor)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <app-form-create-sensors
+    [sensor]="sensor"
+    [(isOpen)]="isOpen"
+    (save)="saveOrEdit($event)"
+  ></app-form-create-sensors>
+  <!-- <p-button
+    (click)="showAlertDialog()"
+    icon="pi pi-external-link"
+    label="Show"
+  ></p-button> -->
+  <p-dialog
+    header="ALERTA DE INCENDIO"
+    [(visible)]="displayAlert"
+    [style]="{ width: '50vw' }"
+  >
+    <p>
+      Se está presentando un incremento de temperatura en el sensor
+      <b>1000312</b>, en el area <b>Amazonas - Brasil</b>, con una temperatura
+      de <b>200º</b>.
+      <!-- {{ sensorsHighTemperature.serial }}, ubicado en el area
+      {{ sensorsHighTemperature.area }}, con una temperatura de
+      {{ sensorsHighTemperature.temperatura }} -->
+    </p>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="displayAlert = false"
+        label="REPORTAR AHORA"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+  <!-- <app-alert [(isOpen)]="isOpenA"></app-alert> -->
+  <!-- <div [sensors]="sensorsHighTemperature">
+  
+  </div> -->
+</div>
